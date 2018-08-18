@@ -29,13 +29,13 @@ def  age_group(age):
            return '80+'
        
         
-import pyspark
-from pyspark import SparkSession
+#import pyspark
+#from pyspark import SparkSession
 #textFile = spark.read.text("D:\Arasan\Misc\GitHub\Spark\README.md")
 from pyspark.sql import SparkSession
-from pyspark import SparkContext
+#from pyspark import SparkContext
 from pyspark import SparkConf
-from pyspark.sql import SQLContext
+#from pyspark.sql import SQLContext
 
 conf = SparkConf().setAll([('spark.executor.memory', '4g'), ('spark.executor.cores', '4'), ('spark.cores.max', '4'), ('spark.driver.memory','4g')])
 spark = SparkSession.builder.appName("example-spark").config(conf=conf).getOrCreate()
@@ -170,8 +170,12 @@ sc = spark.sparkContext.getOrCreate() # see its lowercase
 # citypy = df.groupBy('Geographic area').agg({'share_white' : 'mean'}).select(col('Geographic area'), col('avg(share_white)').alias('share_white_mean')).orderBy('Geographic area')
 # print(citypy.toPandas())
 # =============================================================================
-data_file = "C:\\Users\\128537\\Downloads\\kddcup.data_10_percent_corrected"
+#data_file = "C:\\Users\\128537\\Downloads\\kddcup.data_10_percent_corrected"
+import os
+data_file = os.path.join(os.getcwd(),'input/u.user') 
+print(data_file)
 raw_data = sc.textFile(data_file)
+print(raw_data.count())
 
 # =============================================================================
 # normal_raw_data = raw_data.filter(lambda x: 'normal.' in x)
